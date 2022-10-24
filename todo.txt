@@ -1,0 +1,12 @@
+Required
+- help (link to github readme)
+- game info
+- game invite
+- leaderboard global
+- user info
+- bans
+- flux
+
+Optional
+- Game status (player stats)
+- Game leaderboard
