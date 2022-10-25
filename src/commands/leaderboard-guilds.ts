@@ -1,23 +1,21 @@
+const AsciiTable = require('ascii-table')
 import { getGuildLeaderboard } from "../api"
-import { getBaseEmbedResponse } from "../utils"
 
 export default async (msg) => {
     const leaderboard = await getGuildLeaderboard()
 
-    const nameList = leaderboard.leaderboard.map(g => `${g.name} [${g.tag}]\n`)
-    const positionList = leaderboard.leaderboard.map(g => g.position + `\n`)
-    const rankList = leaderboard.leaderboard.map(g => g.totalRank + `\n`)
+    const table = new AsciiTable('Top 10 Guilds')
+        .setHeading('', 'Name', 'Rank')
+        .setHeadingAlignLeft()
 
-    const response = getBaseEmbedResponse()
+    for (const guild of leaderboard.leaderboard) {
+        table.addRow(
+            guild.position,
+            `${guild.name} [${guild.tag}]`,
+            guild.totalRank)
+    }
 
-    response
-        .setTitle(`Top 10 Guilds`)
-        .setURL(`https://solaris.games/#/leaderboard`)
-        .addFields(
-            { name: "Position", value: positionList, inline: true },
-            { name: "Guild", value: nameList, inline: true },
-            { name: "Rank", value: rankList, inline: true }
-        )
+    const response = `\`\`\`\n${table.toString()}\`\`\``
 
     return msg.channel.send(response)
 }
