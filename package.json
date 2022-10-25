@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node-dev --transpile-only --respawn --inspect=9232 src/index.ts",
-    "start:prod": "node dist/index.ts",
+    "start:prod": "node dist/index.js",
     "prebuild": "rm -rf ./dist",
     "build": "tsc",
     "postbuild": "cp .env ./dist | true",

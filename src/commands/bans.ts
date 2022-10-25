@@ -1,15 +1,28 @@
-import { getBans } from "../api";
+import { getBans } from "../api"
 
 export default async (msg) => {
     const authorId = msg.author.id
 
     const bans = await getBans()
 
-    const starBans = bans.star.map(s => `- ${s.name}\n`).join('')
-    const carrBans = bans.carrier.map(s => `- ${s.name}\n`).join('')
-    const specStarBans = bans.specialStar.map(s => `- ${s.name}\n`).join('')
+    const starBans = bans.star.map(s => `- ${s.name}`).join('\n')
+    const carrBans = bans.carrier.map(s => `- ${s.name}`).join('\n')
+    const specStarBans = bans.specialStar.map(s => `- ${s.name}`).join('\n')
 
-    let response = `Hey <@${authorId}>,\n\nThis month's bans are as follows.\n\nStar specialists:\n${starBans}\n\nCarrier specialists:\n${carrBans}\n\Special stars:\n${specStarBans}\n\nThe ban list affects official games only and changes on the 1st of every month, for information see the wiki.`
+    let response = `Hey <@${authorId}>,
+    
+This month's bans are as follows:
+
+__Star specialists__
+${starBans}
+
+__Carrier specialists__
+${carrBans}
+
+__Special stars__
+${specStarBans}
+
+*The ban list affects official games only and changes on the 1st of every month, for information see the wiki.*`
 
     return msg.channel.send(response)
 }

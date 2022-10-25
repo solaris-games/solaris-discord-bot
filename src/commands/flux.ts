@@ -1,11 +1,17 @@
-import { getFlux } from "../api";
+import { getFlux } from "../api"
 
 export default async (msg) => {
     const authorId = msg.author.id
 
     const flux = await getFlux()
 
-    let response = `Hey <@${authorId}>,\n\nThis month's flux is:\n\n*${flux.description}*\n\nFlux changes on the 1st of every month, for information see the wiki.`
+    let response = `Hey <@${authorId}>,
+
+This month's flux is:
+
+**${flux.description}**
+
+*Flux changes on the 1st of every month, for information see the wiki.*`
 
     return msg.channel.send(response)
 }
