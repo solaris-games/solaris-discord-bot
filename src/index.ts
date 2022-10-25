@@ -1,6 +1,6 @@
-import startBot from './bot'
-
 require('dotenv').config()
+
+import startBot from './bot'
 
 process.on('SIGINT', async () => {
     console.log('Shutting down...');

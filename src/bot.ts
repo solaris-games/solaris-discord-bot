@@ -13,6 +13,11 @@ client.on('message', async (msg) => {
         return
     }
 
+    await tryExecuteCommand(msg)
+    await tryReactToSuggestion(msg)
+})
+
+const tryExecuteCommand = async (msg) => {
     const key = extractCommandKey(msg) // Check if the message is a command
 
     if (!key) {
@@ -26,7 +31,18 @@ client.on('message', async (msg) => {
     }
 
     await command(msg)
-})
+}
+
+const SUGGESTION_CHANNEL_IDS = process.env.CHAT_IDS_SUGGESTIONS?.split(',') || []
+
+const tryReactToSuggestion = (msg) => {
+    if (!SUGGESTION_CHANNEL_IDS.includes(msg.channel.id)) {
+        return
+    }
+
+    msg.react('👍')
+    msg.react('👎')
+}
 
 export default () => {
     console.log('Connecting to Discord...')
