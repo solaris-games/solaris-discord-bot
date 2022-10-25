@@ -10,6 +10,16 @@ export const extractCommandKey = (msg) => {
     return null
 }
 
+export const extractGameLinkId = (msg) => {
+    const match = msg.content.match(/https:\/\/solaris\.games\/#\/game(?:\/detail)?\?id=(\w+)/i)
+
+    if (match && match.length) {
+        return match[1] || null
+    }
+
+    return null
+}
+
 export const getBaseEmbedResponse = () => new Discord.MessageEmbed()
     .setURL(`https://solaris.games`)
     .setAuthor(`Solaris`)

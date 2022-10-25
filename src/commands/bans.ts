@@ -24,5 +24,5 @@ ${specStarBans}
 
 *The ban list affects official games only and changes on the 1st of every month, for information see the wiki.*`
 
-    return msg.channel.send(response)
+    msg.channel.send(response)
 }

@@ -13,5 +13,5 @@ Here's a list of things I can do:
 
 If you have any questions please contact a developer.`
 
-    return msg.channel.send(response);
+    msg.channel.send(response);
 }

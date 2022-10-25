@@ -13,5 +13,5 @@ This month's flux is:
 
 *Flux changes on the 1st of every month, for information see the wiki.*`
 
-    return msg.channel.send(response)
+    msg.channel.send(response)
 }

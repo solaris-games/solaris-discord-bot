@@ -17,5 +17,5 @@ export default async (msg) => {
 
     const response = `\`\`\`\n${table.toString()}\`\`\``
 
-    return msg.channel.send(response)
+    msg.channel.send(response)
 }
