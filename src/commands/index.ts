@@ -5,6 +5,7 @@ import leaderboard from './leaderboard-global'
 import elo from './leaderboard-elo'
 import guilds from './leaderboard-guilds'
 import dog from './dog'
+import cat from './cat'
 
 export default {
     help,
@@ -13,5 +14,6 @@ export default {
     leaderboard,
     elo,
     guilds,
-    dog
+    dog,
+    cat,
 }

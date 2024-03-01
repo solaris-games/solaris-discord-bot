@@ -9,6 +9,7 @@ Here's a list of things I can do:
 \`$elo\` - Displays the top 10 players by ELO rating.
 \`$guilds\` - Displays the top 10 guilds by total rank.
 \`$dog\` - Dog.
+\'$cat\' - Cat.
 \`$help\` - Displays this message again.
 
 If you have any questions please contact a developer.`
