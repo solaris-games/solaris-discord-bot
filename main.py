@@ -7,6 +7,7 @@ import asyncio
 import sqlite3
 import miru
 
+from src import utils, api
 
 dotenv.load_dotenv()
 
@@ -35,7 +36,14 @@ async def on_stopping(event: hikari.StoppingEvent) -> None:
 
 @bot.listen()
 async def on_message(event: hikari.MessageCreateEvent):
-  # Ensure the bot doesn't react to its own messages
+   await auto_react(event)
+   print(api.get_game_info(utils.extract_game_link_id(event.message))['settings']['general']['description'])
+
+async def auto_embed(event):
+   pass
+
+async def auto_react(event):
+   # Ensure the bot doesn't react to its own messages
     if event.author_id == bot.get_me().id:
         return
 
