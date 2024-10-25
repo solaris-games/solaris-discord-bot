@@ -1,7 +1,6 @@
 import hikari
 import lightbulb
-import miru
-import random
+
 
 help_plugin = lightbulb.Plugin("help")
 

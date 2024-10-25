@@ -6,7 +6,7 @@ from src import api
 bans_plugin = lightbulb.Plugin("bans")
 
 @bans_plugin.command()
-@lightbulb.command("bans", "Displays all commands.")
+@lightbulb.command("bans", "Displays this month's Specialist bans.")
 @lightbulb.implements(lightbulb.SlashCommand)
 async def bans(ctx: lightbulb.Context):
     embed= (hikari.Embed())
