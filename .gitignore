@@ -23,3 +23,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+.venv
+__pycache__/
