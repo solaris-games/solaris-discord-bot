@@ -37,17 +37,23 @@ async def on_stopping(event: hikari.StoppingEvent) -> None:
 @bot.listen()
 async def on_message(event: hikari.MessageCreateEvent):
    await auto_react(event)
-   print(api.get_game_info(utils.extract_game_link_id(event.message))['settings']['general']['description'])
+   await auto_embed(event)
 
-async def auto_embed(event):
-   pass
+   #print(api.get_game_info(utils.extract_game_link_id(event.message))['settings']['general']['description'])
 
-async def auto_react(event):
+async def auto_embed(event: hikari.MessageCreateEvent):
    # Ensure the bot doesn't react to its own messages
     if event.author_id == bot.get_me().id:
         return
+    
+    await utils.try_auto_game_link(event.message)
 
-    # Check if the message is from a suggestion channel
+async def auto_react(event: hikari.MessageCreateEvent):
+  # Ensure the bot doesn't react to its own messages
+    if event.author_id == bot.get_me().id:
+        return
+
+  # Check if the message is from a suggestion channel
     if event.channel_id in suggestion_channel_ids:
         await event.message.add_reaction("👍")
         await event.message.add_reaction("👎")
