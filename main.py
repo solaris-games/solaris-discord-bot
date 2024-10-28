@@ -3,16 +3,13 @@ import hikari
 import lightbulb
 import aiohttp
 import dotenv 
-import asyncio
-import sqlite3
+
 import miru
 
-from src import utils, api
+from src import utils
 
 dotenv.load_dotenv()
 
-
-secret_guild = os.environ['SECRET_GUILD']
 suggestion_channel_ids = [int(id) for id in os.environ['CHAT_IDS'].split(",") if id.isdigit()]
 
 
@@ -39,7 +36,6 @@ async def on_message(event: hikari.MessageCreateEvent):
    await auto_react(event)
    await auto_embed(event)
 
-   #print(api.get_game_info(utils.extract_game_link_id(event.message))['settings']['general']['description'])
 
 async def auto_embed(event: hikari.MessageCreateEvent):
    # Ensure the bot doesn't react to its own messages
