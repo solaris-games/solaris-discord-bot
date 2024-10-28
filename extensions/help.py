@@ -13,14 +13,13 @@ async def help(ctx: lightbulb.Context):
   msg = f'''
 Here's a list of things I can do:
 
-\`$flux\` - Displays this month's Flux.
-\`$bans\` - Displays this month's Specialist bans.
-\`$leaderboard\` - Displays the top 10 players by rank.
-\`$elo\` - Displays the top 10 players by ELO rating.
-\`$guilds\` - Displays the top 10 guilds by total rank.
-\`$dog\` - Dog.
-\'$cat\' - Cat.
-\`$help\` - Displays this message again.
+\`/flux\` - Displays this month's Flux.
+\`/bans\` - Displays this month's Specialist bans.
+\`/leaderboard_rank\` - Displays the top 10 players by rank.
+\`/leaderboard_elo\` - Displays the top 10 players by ELO rating.
+\`/leaderboard_guild\` - Displays the top 10 guilds by total rank.
+\`/animals\` - Dog or Cat.
+\`/help\` - Displays this message again.
 
 If you have any questions please contact a developer.` '''
   
