@@ -7,19 +7,17 @@ Before you begin, run through the [discord.js](https://discordjs.guide/preparati
 Once you have created a bot, added it to your server and retrieved a bot token, you can proceed:
 
 1. Install the prerequisites.
-    - [Node.js](https://nodejs.org/en/) v14
+    - pip install -r requirements.txt
 2. Clone the repository.
 3. Checkout `master`.
-4. `npm install`
-5. Create a `.env` file in the root directory (See `.env.example`).
+4. Create a `.env` file in the root directory (See `.env.example`).
     - Add your Discord bot token to the `DISCORD_BOT_TOKEN` environment variable.
-6. `npm start` to start the bot.
+6. `python3 main.py` to start the bot.
 
 ## Adding new commands
 
-1. Create a new command in `src/commands`.
-2. Register it in `src/index.ts`.
-    - Note that users can execute the command with the `$<command_name>` format, for example `$help`.
+1. Create a new command in `extensions`.
+
 
 ## Contributing
 See [here](CONTRIBUTING.md).
