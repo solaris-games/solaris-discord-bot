@@ -11,6 +11,12 @@ def get(url: str):
     
     return response.json()
 
+def get_carrier_specs():
+    return get("game/specialists/carrier")
+
+def get_star_specs():
+    return get("game/specialists/star")
+
 def get_bans():
     return get("game/specialists/bans")
 
