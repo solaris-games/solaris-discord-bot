@@ -12,7 +12,7 @@ async def lookup(ctx: lightbulb.SlashContext) -> None:
   pass
 
 @lookup.child
-@lightbulb.option("name", "Enter the name of the specalist you wish to look up", hikari.OptionType.STRING, autocomplete=True, required=True)
+@lightbulb.option("name", "Enter the name of the specialist you wish to look up", hikari.OptionType.STRING, autocomplete=True, required=True)
 @lightbulb.command("carrier_specalist", "Look up information about a carrier specalist", pass_options=True)
 @lightbulb.implements(lightbulb.SlashSubCommand)
 async def carrier_specalist(ctx: lightbulb.SlashContext, name: hikari.OptionType.STRING)-> None:
