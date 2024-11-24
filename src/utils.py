@@ -83,3 +83,42 @@ def get_game_mode_friendly_text(game_info):
     }
 
     return game_mode_map.get(game_info['settings']['general']['mode'], 'Unknown')
+
+def get_spec_names(spec_type):
+    if spec_type == "carrier":
+        specs = api.get_carrier_specs()
+    if spec_type == "star":
+        specs = api.get_star_specs()
+
+    names = [spec['name'] for spec in specs]
+
+    return names
+
+def get_spec_details(name, spec_type):
+    if spec_type == "carrier":
+        specs = api.get_carrier_specs()
+    if spec_type == "star":
+        specs = api.get_star_specs()
+    
+    for spec in specs:
+        if spec['name'] == name:
+            image_url = f"src/assets/specialist/{spec['key']}.png"
+            description = spec['description']
+            base_cost_credits = spec['baseCostCredits']
+            base_cost_specialist_credit = spec['baseCostCreditsSpecialists']
+
+            return image_url, description, base_cost_credits, base_cost_specialist_credit
+        
+    else: 
+        return None
+    
+def filter_choices(items: list, option: hikari.AutocompleteInteractionOption)-> list:
+    filtered_items = [item for item in items if option.value.lower() in item.lower()]
+  
+    # Limit the number of choices based on the filtered items
+    choices = [{"name": item, "value": item} for item in filtered_items[:25]]
+
+    if not filtered_items:
+        return []
+    else: 
+        return [f['name'] for f in choices]

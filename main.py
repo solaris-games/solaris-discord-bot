@@ -12,7 +12,6 @@ dotenv.load_dotenv()
 
 suggestion_channel_ids = [int(id) for id in os.environ['CHAT_IDS'].split(",") if id.isdigit()]
 
-
 bot = lightbulb.BotApp(
   os.environ["DISCORD_BOT_TOKEN"],
   intents=hikari.Intents.ALL,
