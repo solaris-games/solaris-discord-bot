@@ -14,6 +14,8 @@ Once you have created a bot, added it to your server and retrieved a bot token, 
     - Add your Discord bot token to the `DISCORD_BOT_TOKEN` environment variable.
 6. `python3 main.py` to start the bot.
 
+Running via docker is also supported. Look at `docker-compose.yaml`.
+
 ## Adding new commands
 
 1. Create a new command in `extensions`.
