@@ -13,7 +13,7 @@ async def lookup(ctx: lightbulb.SlashContext) -> None:
 
 @lookup.child
 @lightbulb.option("name", "Enter the name of the specialist you wish to look up", hikari.OptionType.STRING, autocomplete=True, required=True)
-@lightbulb.command("carrier_specialist", "Look up information about a carrier specalist", pass_options=True)
+@lightbulb.command("carrier_specialist", "Look up information about a carrier specialist", pass_options=True)
 @lightbulb.implements(lightbulb.SlashSubCommand)
 async def carrier_specialist(ctx: lightbulb.SlashContext, name: hikari.OptionType.STRING)-> None:
   embed = utils.get_base_embeded_response()
@@ -42,10 +42,10 @@ async def on_text_autocomplete(option: hikari.AutocompleteInteractionOption, int
   return filtered_choices
 
 @lookup.child
-@lightbulb.option("name", "Enter the name of the specalist you wish to look up", hikari.OptionType.STRING, autocomplete=True, required=True)
-@lightbulb.command("star_specalist", "Look up information about a star specalist", pass_options=True)
+@lightbulb.option("name", "Enter the name of the specialist you wish to look up", hikari.OptionType.STRING, autocomplete=True, required=True)
+@lightbulb.command("star_specialist", "Look up information about a star specialist", pass_options=True)
 @lightbulb.implements(lightbulb.SlashSubCommand)
-async def star_specalist(ctx: lightbulb.SlashContext, name: hikari.OptionType.STRING)-> None:
+async def star_specialist(ctx: lightbulb.SlashContext, name: hikari.OptionType.STRING)-> None:
   embed = utils.get_base_embeded_response()
 
   if utils.get_spec_details(name, "star") is None:
@@ -64,7 +64,7 @@ async def star_specalist(ctx: lightbulb.SlashContext, name: hikari.OptionType.ST
   await ctx.respond(embed)
   
 
-@star_specalist.autocomplete("name")
+@star_specialist.autocomplete("name")
 async def on_text_autocomplete(option: hikari.AutocompleteInteractionOption, interaction: hikari.AutocompleteInteraction):
   items = utils.get_spec_names("star")
   
