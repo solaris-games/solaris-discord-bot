@@ -8,10 +8,13 @@ import miru
 
 from src import utils
 
-env_file_path = os.environ['ENV_FILE_PATH']
+if 'ENV_FILE_PATH' in os.environ:
+    env_file_path = os.environ['ENV_FILE_PATH']
 
-if env_file_path and os.path.exists(env_file_path):
-    dotenv.load_dotenv(env_file_path)
+    if env_file_path and os.path.exists(env_file_path):
+        dotenv.load_dotenv(env_file_path)
+    else:
+        print("Failed to load additional env file from path: ", env_file_path)
 
 dotenv.load_dotenv()
 
