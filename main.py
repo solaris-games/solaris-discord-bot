@@ -8,6 +8,11 @@ import miru
 
 from src import utils
 
+env_file_path = os.environ['ENV_FILE_PATH']
+
+if env_file_path and os.path.exists(env_file_path):
+    dotenv.load_dotenv(env_file_path)
+
 dotenv.load_dotenv()
 
 suggestion_channel_ids = [int(id) for id in os.environ['CHAT_IDS'].split(",") if id.isdigit()]
