@@ -1,7 +1,10 @@
 import hikari
 import re
+import random
 
 from src import api
+from dataclasses import dataclass
+from dataclasses import field
 
 def extract_game_link_id(msg: hikari.Message) -> str:
     #Extract game link ID from message content.
@@ -122,3 +125,63 @@ def filter_choices(items: list, option: hikari.AutocompleteInteractionOption)-> 
         return []
     else: 
         return [f['name'] for f in choices]
+
+@dataclass
+class DiceHandler():
+    die_count: int
+    die_size: int
+    mod: int = 0
+    result: int = 0
+    final_result: int = 0
+    dropped_roll: int = 0
+    rolls: list = field(default_factory=list)
+
+    def roll_dice(self):
+        for roll in range(self.die_count):
+            rolled = random.randrange(1, self.die_size)
+            self.final_result += rolled
+            self.rolls.append(rolled)
+
+    def roll_die_consider_adv(self, mod, roll_twice=None):
+        self.mod = mod
+        if roll_twice:
+            die_count = 2
+        else:
+            die_count = 1
+        
+        for roll in range(die_count):
+            result = random.randrange(1, self.die_size)
+            self.result += result
+            self.rolls.append(result)
+        
+        if roll_twice == "Advantage":
+            result = self.get_highest_roll()
+        if roll_twice == "Disadvantage":
+            self.result = self.get_lowest_roll()
+        
+        self.final_result = self.result + mod
+    
+    def get_highest_roll(self):
+        highest_roll = max(self.rolls)
+        self.dropped_roll = min(self.rolls)
+        return highest_roll
+    
+    def get_lowest_roll(self):
+        lowest_roll = min(self.rolls)
+        self.dropped_roll = max(self.rolls)
+        return lowest_roll
+
+
+def map_die_type_to_int(die_type: str) -> int:
+    die_map = {
+        'd2': 2,
+        'd4': 4,
+        'd6': 6,
+        'd8': 8,
+        'd10': 10,
+        'd12': 12,
+        'd20': 20,
+        'd100': 100
+    }
+
+    return die_map.get(die_type)
