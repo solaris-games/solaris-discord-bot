@@ -138,7 +138,7 @@ class DiceHandler():
 
     def roll_dice(self):
         for roll in range(self.die_count):
-            rolled = random.randrange(1, self.die_size)
+            rolled = random.randrange(1, self.die_size + 1)
             self.final_result += rolled
             self.rolls.append(rolled)
 
@@ -150,7 +150,7 @@ class DiceHandler():
             die_count = 1
         
         for roll in range(die_count):
-            result = random.randrange(1, self.die_size)
+            result = random.randrange(1, self.die_size + 1)
             self.result += result
             self.rolls.append(result)
         
