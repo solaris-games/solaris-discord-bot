@@ -43,7 +43,7 @@ async def on_stopping(event: hikari.StoppingEvent) -> None:
 async def on_message(event: hikari.MessageCreateEvent):
     handled1 = await check_honeypot(event)
     if handled1:
-        True
+        return True
     await auto_react(event)
     await auto_embed(event)
 
