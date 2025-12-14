@@ -1,9 +1,10 @@
 services:
   discord-bot:
     build: .
-    image: ghcr.io/solaris-games/solaris-discord-bot:1.0
+    image: ghcr.io/solaris-games/solaris-discord-bot:1.1
     environment:
       - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
       - SOLARIS_API_BASE_URL=${SOLARIS_API_BASE_URL}
       - CHAT_IDS=${CHAT_IDS}
+      - HONEYPOT_IDS=${HONEYPOT_IDS}
     network_mode: "host"
