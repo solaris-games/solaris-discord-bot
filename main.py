@@ -43,7 +43,7 @@ async def on_stopping(event: hikari.StoppingEvent) -> None:
 async def on_message(event: hikari.MessageCreateEvent):
     handled1 = await check_honeypot(event)
     if handled1:
-        return True
+        return
     await auto_react(event)
     await auto_embed(event)
 
@@ -56,10 +56,10 @@ async def check_honeypot(event: hikari.MessageCreateEvent):
         try:
             channel = event.get_channel()
             if not event.guild_id:
-                return
+                return True
 
             if event.is_bot:
-                return
+                return True
 
             guild = await app.rest.fetch_guild(event.guild_id)
             channel = await app.rest.fetch_channel(event.channel_id)
@@ -74,7 +74,7 @@ async def check_honeypot(event: hikari.MessageCreateEvent):
 
             if not can_ban:
                 print("Bot is missing permissions")
-                return
+                return True
 
             await app.rest.ban_user(
                 guild=event.guild_id,
@@ -91,7 +91,9 @@ async def check_honeypot(event: hikari.MessageCreateEvent):
         except hikari.NotFoundError:
             print("User already banned or not found")
 
-    return False
+        return True
+    else:
+        return False
 
 async def auto_embed(event: hikari.MessageCreateEvent):
    # Ensure the bot doesn't react to its own messages
